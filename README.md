@@ -1,3 +1,1 @@
-# java
-# Java
 # Java
