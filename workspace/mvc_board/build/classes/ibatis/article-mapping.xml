@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="article">
+	<typeAlias alias="ArticleVO" type="article.models.ArticleVO"/>
+	<typeAlias alias="PageNation" type="article.controlers.Pagination"/>
+	
+	<cacheModel type="memory" id="listCache">
+		<flushInterval hours="24"/>
+		<flushOnExecute statement="article.insertArticle"/>
+		<flushOnExecute statement="article.updateArticle"/>
+		<flushOnExecute statement="article.deleteArticle"/>
+	</cacheModel>	
+	
+	<resultMap class="articleVO" id="articleMap">
+		<result property="no" column="no" />
+		<result property="title" column="title" />
+		<result property="name" column="name" />
+		<result property="regdate" column="regdate" />
+		<result property="viewcount" column="viewcount" />
+	</resultMap>
+	
+	<select id="getArticleList" parameterClass="pagenation" resultMap="articleMap" cacheModel="listCache">
+	SELECT B.*
+	FROM (SELECT rownum AS rnum, A.*
+	      FROM (SELECT no, title, name, regdate, viewcount
+	            FROM tb_article
+	            ORDER BY no DESC) A) B
+	WHERE rnum BETWEEN #startnum# and #endnum#
+	</select>
+
+	<insert id="insertArticle" parameterClass="ArticleVO">
+	INSERT INTO tb_article(no, title, name, pwd, content)
+	VALUES(seq_article.nextval, #title#, #name#, #pwd#, #content#)
+	</insert>
+
+	<select id="getDetail" parameterClass="long" resultClass="ArticleVO">
+	SELECT no, title, name, regdate, viewcount, content
+	FROM tb_article
+	WHERE no=#no#
+	</select>
+	
+	<select id="getTotalCount" resultClass="Long">
+	SELECT count(*) AS cnt
+	FROM tb_article
+	</select>
+	
+	<update id="updateViewcount">
+	update tb_article set       
+	       viewcount = viewcount + 1
+	where no = #no#               
+	</update>
+	
+	
+	<update id="updateArticle">
+	UPDATE tb_article SET
+	       name=#name# 
+	      ,title=#title#
+	      ,content=#content#
+	WHERE no=#no# AND pwd=#pwd#
+	</update>
+	
+	<delete id="deleteArticle">
+	DELETE FROM tb_article
+	WHERE no=#no# AND pwd=#pwd#
+	</delete>
+	
+</sqlMap>
+<!-- 참조변수가 안에 있는 인스턴스 안에서 불러올 떄, #memberVO.name#형식으로 쓸 수도 있음. -->

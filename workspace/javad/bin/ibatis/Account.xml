@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Account">
+	<typeAlias alias="AccountVO" type="ibatis.AccountVO"/>
+	<insert id="insertAccount" parameterClass="AccountVO">
+	INSERT INTO tb_account(id, firstName, lastName, emailAddress)
+	VALUES (seq_account.nextval, #firstName#, #lastName#, #emailAddress#)
+	</insert>
+	
+	<select id="listAccount" resultClass="AccountVO">
+	SELECT id, firstName, lastName, emailAddress
+	FROM tb_account
+	ORDER BY id DESC
+	</select>
+	
+	<select id="detailAccount" parameterClass="int" resultClass="AccountVO">
+	SELECT id, firstName, lastName, emailAddress
+	FROM tb_account
+	WHERE id=#id#
+	</select>
+	
+	<update id="updateAccount" parameterClass="AccountVO">
+	UPDATE tb_account SET 
+		firstName = #firstName# 
+	   ,lastName = #lastName#
+	   ,emailAddress = #emailAddress#
+	WHERE id=#id#
+	</update>
+	
+	<delete id="deleteAccount" parameterClass="int">
+	DELETE FROM tb_account WHERE id=#id#
+	</delete>
+</sqlMap>
+
+<!--## : #양쪽에 붙임 -> getter로 가져오겠다 의미. #과 컬럼사이에 공백 없어야 하고 대소문자 구분 할 것-->
+<!-- 세미콜론 붙이지 말것 -->
