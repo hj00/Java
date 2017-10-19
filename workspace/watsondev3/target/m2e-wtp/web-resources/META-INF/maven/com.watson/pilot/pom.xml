@@ -34,12 +34,6 @@
 		</dependency>
 				
 		<!-- AspectJ -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>	
-		
 		
 		<!-- spring test -->
 		<dependency>
@@ -133,7 +127,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -141,7 +135,7 @@
 		<dependency>
 			<groupId>com.ibm.watson.developer_cloud</groupId>
 			<artifactId>java-sdk</artifactId>
-			<version>4.0.0</version>
+			<version>3.8.0</version>
 		</dependency>
 		       
 		<!-- spring jdbc -->
@@ -198,6 +192,13 @@
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.2</version>
+		</dependency>
+		
+				<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
 		</dependency>
 		        
 	</dependencies>
