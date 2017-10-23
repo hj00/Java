@@ -1,0 +1,4 @@
+conversation.url=https://gateway.watsonplatform.net/conversation/api
+conversation.username=fd631f1b-57d1-4334-a650-a69edf94e45d
+conversation.password=4EKVNuvZ17V6
+conversation.workspaceid=bb1fb091-625f-4f01-ac83-b70a2c6f5e8d
