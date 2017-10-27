@@ -152,7 +152,7 @@
 
       
       
-      <Context docBase="watsondev3" path="/pilot" reloadable="true" source="org.eclipse.jst.jee.server:watsondev3"/></Host>
+      <Context docBase="chatbotdev" path="/chat" reloadable="true" source="org.eclipse.jst.jee.server:chatbotdev"/></Host>
     </Engine>
   </Service>
 </Server>

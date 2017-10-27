@@ -25,6 +25,8 @@
 	
 	<context:component-scan base-package="net.watson.chat" />
 	
+	<context:property-placeholder location="/WEB-INF/system.properties"/>
+	
 	<aop:aspectj-autoproxy />	
 	
 <!-- data source -->
@@ -37,7 +39,7 @@
 	</beans:bean>
 	
 	<!-- Mybatis start -->
-	<beans:bean id="sqlSessionFactory" 
+<!-- 	<beans:bean id="sqlSessionFactory" 
 	class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="typeAliasesPackage" value="net.watson.chat" />
@@ -48,7 +50,7 @@
 		<beans:property name="sqlSessionFactory" ref="sqlSessionFactory" />
 		<beans:property name="mapperInterface" 
 		value="net.watson.chat.NLUDAO"/>
-	</beans:bean>
+	</beans:bean> -->
 	<!-- Mybatis end -->
 	
 </beans:beans>
